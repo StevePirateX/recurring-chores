@@ -17,3 +17,4 @@ if __name__ == '__main__':
             print(chore, end=", ")
         else:
             print(chore)
+    input("Press ENTER to exit ")
