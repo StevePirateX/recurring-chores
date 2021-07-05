@@ -1,0 +1,3 @@
+CHORE_LIST_CSV_NAME = "chore_list.csv"
+NUM_CHORES = 2
+PRINT_INPUT_CHORE_LIST = False

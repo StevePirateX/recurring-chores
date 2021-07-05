@@ -10,3 +10,8 @@ of the specified number of tasks (e.g. 3 tasks) that someone wants to
 do. This may be for them to complete over a week, within a given day
 etc. If they don't like the selection, they just re-generate another
 list.
+
+### CSV Input File
+The CSV file is formatted like so:
+
+`Chore,Frequency (every x days),Description`
