@@ -3,6 +3,7 @@ from csv import reader
 import random
 import os
 import configparser
+from chore import Chore
 
 
 def import_csv_file(filename: str) -> list:
@@ -25,8 +26,11 @@ def import_csv_file(filename: str) -> list:
     rows = []
     for index, item in enumerate(data):
         if index > 0:
-            item[1] = int(item[1])
-            rows.append(item)
+            name = item[0]
+            frequency = int(item[1])
+            description = item[2]
+            chore = Chore(name, frequency, description)
+            rows.append(chore)
     return rows
 
 
@@ -40,15 +44,11 @@ def get_task_list(chores: list, num_chores: int) -> list:
     :param num_chores: How many chores to be returned in the list
     :return: List of chores
     """
-    chores.sort(key=lambda z: int(z[1]), reverse=True)
-
     chore_names = []
     weights = []
     for chore in chores:
-        chore_names.append(chore[0])
-        weight = 1 / float(chore[1])
-        chore.append(weight)
-        weights.append(weight)
+        chore_names.append(chore.get_name())
+        weights.append(chore.get_weight())
 
     generated_chores = []
     chore_copy = []
@@ -62,7 +62,7 @@ def get_task_list(chores: list, num_chores: int) -> list:
                 chores):
             generated_chores.append(choice)
         for index, chore in enumerate(chores):
-            if choice == chore[0]:
+            if choice == chore.get_name():
                 chores.remove(chore)
                 break
         if len(chores) == 0:
