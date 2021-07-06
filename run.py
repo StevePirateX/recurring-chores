@@ -20,6 +20,8 @@ def get_random_chores(chore_list: list, number_of_chores: int) -> None:
 
 if __name__ == '__main__':
     print("Welcome to Recurring Chores v{}".format(c.VERSION))
+    f.import_config('config.ini')
+
     print("Running recurring chores...")
     chores = f.import_csv_file(c.CHORE_LIST_CSV_NAME)
     if c.PRINT_INPUT_CHORE_LIST:

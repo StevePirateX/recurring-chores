@@ -1,6 +1,6 @@
 VERSION = "0.1.2"
 CHORE_LIST_CSV_NAME = "chore_list.csv"
-NUM_CHORES = 2
+NUM_CHORES = 1
 PRINT_INPUT_CHORE_LIST = False
 
 CSV_HEADERS = "Chore,Frequency (every x days),Description"

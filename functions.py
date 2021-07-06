@@ -2,6 +2,7 @@ import constants
 from csv import reader
 import random
 import os
+import configparser
 
 
 def import_csv_file(filename: str) -> list:
@@ -32,7 +33,7 @@ def import_csv_file(filename: str) -> list:
 def get_task_list(chores: list, num_chores: int) -> list:
     """
     Randomly selects `num_chores` number of tasks based upon the input
-    list chores. The frequency of chores also changes the liklihood that
+    list chores. The frequency of chores also changes the likelihood that
     the chore is selected.
 
     :param chores: List of chores (Chore name, Frequency)
@@ -67,3 +68,24 @@ def get_task_list(chores: list, num_chores: int) -> list:
         if len(chores) == 0:
             chores = chore_copy.copy()
     return generated_chores
+
+
+def import_config(filename: str) -> None:
+    if not os.path.exists(filename):
+        print("'{}' not found. Creating default".format(filename))
+        config_file = open(filename, 'w')
+
+        config = configparser.ConfigParser()
+        config.add_section('General')
+        config.set('General', 'chores_to_generate', '1')
+        config.set('General', 'csv_filename', 'chore_list.csv')
+
+        config.write(config_file)
+        config_file.close()
+
+    with open(filename, 'r') as file:
+        config = configparser.RawConfigParser(allow_no_value=True)
+        config.read_file(file)
+
+    constants.NUM_CHORES = config.getint('General', 'chores_to_generate')
+    constants.CHORE_LIST_CSV_NAME = config.get('General', 'csv_filename')
