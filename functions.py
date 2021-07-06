@@ -71,6 +71,12 @@ def get_task_list(chores: list, num_chores: int) -> list:
 
 
 def import_config(filename: str) -> None:
+    """
+    Imports the .ini file specified and sets the constants.
+    :param filename: String of the filename of the csv. The file
+        is to be located in the same folder as the python file.
+    :return: None
+    """
     if not os.path.exists(filename):
         print("'{}' not found. Creating default".format(filename))
         config_file = open(filename, 'w')
@@ -87,5 +93,7 @@ def import_config(filename: str) -> None:
         config = configparser.RawConfigParser(allow_no_value=True)
         config.read_file(file)
 
-    constants.NUM_CHORES = config.getint('General', 'chores_to_generate')
-    constants.CHORE_LIST_CSV_NAME = config.get('General', 'csv_filename')
+    if config.has_option('General', 'chores_to_generate'):
+        constants.NUM_CHORES = config.getint('General', 'chores_to_generate')
+    if config.has_option('General', 'csv_filename'):
+        constants.CHORE_LIST_CSV_NAME = config.get('General', 'csv_filename')
