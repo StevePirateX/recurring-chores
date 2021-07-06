@@ -1,6 +1,8 @@
 # Recurring Chores
 
+![Version](https://img.shields.io/github/v/release/stevepiratex/recurring-chores?include_prereleases)
 ![License: MIT](https://img.shields.io/github/license/stevepiratex/recurring-chores)
+![Python Version](https://img.shields.io/github/pipenv/locked/python-version/stevepiratex/recurring-chores)
 ![Language](https://img.shields.io/github/languages/top/stevepiratex/recurring-chores)
 
 Randomly generates chores based on a pre-defined list
