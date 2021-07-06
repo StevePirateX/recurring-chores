@@ -1,5 +1,8 @@
 # Recurring Chores
 
+![License: MIT](https://img.shields.io/github/license/stevepiratex/recurring-chores)
+![Language](https://img.shields.io/github/languages/top/stevepiratex/recurring-chores)
+
 Randomly generates chores based on a pre-defined list
 
 It takes a file input with the tasks, frequency (how often the task
@@ -15,3 +18,13 @@ list.
 The CSV file is formatted like so:
 
 `Chore,Frequency (every x days),Description`
+
+Description is not yet implemented.
+
+### Config File
+
+The `config.ini` contains two variables that can be changed:
+- The CSV file name
+- Number of chores to generate
+
+If the file does not exist, it is created.
