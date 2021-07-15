@@ -11,11 +11,15 @@ def get_random_chores(chore_list: list, number_of_chores: int) -> None:
     """
     selected_chores = f.get_task_list(chore_list, number_of_chores)
     print(f"Generated chores = ", end="")
+    reset = "\u001B[0m"
+    bold = "\u001B[1m"
+    green = "\u001B[32m"
     for index, value in enumerate(selected_chores):
+        formatted_value = bold + green + value + reset
         if index < len(selected_chores) - 1:
-            print(value, end=", ")
+            print(formatted_value, end=", ")
         else:
-            print(value)
+            print(formatted_value)
 
 
 if __name__ == '__main__':

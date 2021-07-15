@@ -57,10 +57,11 @@ def get_task_list(chores: list, num_chores: int) -> list:
               "be duplicated.")
         chore_copy = chores.copy()
     while len(generated_chores) < num_chores:
-        choice = random.choices(chore_names, weights=weights).pop()
-        if choice not in generated_chores or len(generated_chores) >= len(
+        choice = random.choices(chore_names, weights=weights)
+        choice_label = choice.pop()
+        if choice_label not in generated_chores or len(generated_chores) >= len(
                 chores):
-            generated_chores.append(choice)
+            generated_chores.append(choice_label)
         for index, chore in enumerate(chores):
             if choice == chore[0]:
                 chores.remove(chore)
