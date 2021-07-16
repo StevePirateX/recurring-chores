@@ -3,7 +3,7 @@ import functions as f
 import time
 
 
-def get_random_chores(chore_list: list, number_of_chores: int) -> None:
+def get_random_chores(chore_list: list, number_of_chores: int, show_output: bool = True) -> None:
     """
     Function to generate the chore list. If the chore file doesn't
     exist, a default csv is created
@@ -11,7 +11,7 @@ def get_random_chores(chore_list: list, number_of_chores: int) -> None:
     :return: None
     """
     selected_chores = f.get_task_list(chore_list, number_of_chores)
-    if not c.TEST_MODE:
+    if show_output:
         print(f"Generated chores = ", end="")
         reset = "\u001B[0m"
         bold = "\u001B[1m"
@@ -27,8 +27,6 @@ def get_random_chores(chore_list: list, number_of_chores: int) -> None:
 if __name__ == '__main__':
     print("Welcome to Recurring Chores v{}".format(c.VERSION))
     f.import_config('config.ini')
-
-    print("Running recurring chores...")
     chores = f.import_csv_file(c.CHORE_LIST_CSV_NAME)
     if c.PRINT_INPUT_CHORE_LIST:
         print("Chores: ", end="")
@@ -39,8 +37,9 @@ if __name__ == '__main__':
     if c.TEST_MODE:
         time0 = time.time()
         iterations = 10000
-        for i in range(iterations):
-            get_random_chores(chores, c.NUM_CHORES)
+        get_random_chores(chores, c.NUM_CHORES)         # To show the first output
+        for i in range(iterations - 1):
+            get_random_chores(chores, c.NUM_CHORES, False)
         time1 = time.time()
         run_time = time1 - time0
         print("Time ({} iterations) = {:.4f} secs".format(iterations, run_time))
