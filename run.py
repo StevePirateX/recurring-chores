@@ -34,9 +34,13 @@ if __name__ == '__main__':
             print(f"{i + 1}: {chore[0]} ({chore[1]})", end="\t")
         print()
     get_random_chores(chores, c.NUM_CHORES)
-    while True:
-        entry = input(
-            "Press ENTER to generate a new set of chores... (q: quit): ")
-        if entry != "":
-            break
-        get_random_chores(chores, c.NUM_CHORES)
+    if c.TEST_MODE:
+        for i in range(100):
+            get_random_chores(chores, c.NUM_CHORES)
+    else:
+        while True:
+            entry = input(
+                "Press ENTER to generate a new set of chores... (q: quit): ")
+            if entry != "":
+                break
+            get_random_chores(chores, c.NUM_CHORES)
