@@ -31,7 +31,8 @@ if __name__ == '__main__':
     if c.PRINT_INPUT_CHORE_LIST:
         print("Chores: ", end="")
         for i, chore in enumerate(chores):
-            print(f"{i + 1}: {chore[0]} ({chore[1]})", end="\t")
+            print(f"{i + 1}: {chore.get_name()} ({chore.get_frequency()})",
+                  end="\t")
         print()
     get_random_chores(chores, c.NUM_CHORES)
     if c.TEST_MODE:
