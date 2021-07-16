@@ -36,13 +36,12 @@ if __name__ == '__main__':
         print()
     if c.TEST_MODE:
         time0 = time.time()
-        iterations = 10000
         get_random_chores(chores, c.NUM_CHORES)         # To show the first output
-        for i in range(iterations - 1):
+        for i in range(c.TEST_ITERATIONS - 1):
             get_random_chores(chores, c.NUM_CHORES, False)
         time1 = time.time()
         run_time = time1 - time0
-        print("Time ({} iterations) = {:.4f} secs".format(iterations, run_time))
+        print("Time ({} iterations) = {:.4f} secs".format(c.TEST_ITERATIONS, run_time))
     else:
         while True:
             get_random_chores(chores, c.NUM_CHORES)

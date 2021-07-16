@@ -86,7 +86,9 @@ def import_config(filename: str) -> None:
         config.add_section('General')
         config.set('General', 'chores_to_generate', '1')
         config.set('General', 'csv_filename', 'chore_list.csv')
-        config.BOOLEAN_STATES('General', 'test_mode', 'no')
+        config.add_section('Test Mode')
+        config.set('Test Mode', 'test_mode', 'no')
+        config.set('Test Mode', 'iterations', '10000')
 
         config.write(config_file)
         config_file.close()
@@ -99,5 +101,7 @@ def import_config(filename: str) -> None:
         constants.NUM_CHORES = config.getint('General', 'chores_to_generate')
     if config.has_option('General', 'csv_filename'):
         constants.CHORE_LIST_CSV_NAME = config.get('General', 'csv_filename')
-    if config.has_option('General', 'test_mode'):
-        constants.TEST_MODE = config.getboolean('General', 'test_mode')
+    if config.has_option('Test Mode', 'test_mode'):
+        constants.TEST_MODE = config.getboolean('Test Mode', 'test_mode')
+    if config.has_option('Test Mode', 'iterations'):
+        constants.TEST_ITERATIONS = config.getint('Test Mode', 'iterations')
