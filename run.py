@@ -1,5 +1,6 @@
 import constants as c
 import functions as f
+import time
 
 
 def get_random_chores(chore_list: list, number_of_chores: int) -> None:
@@ -10,16 +11,17 @@ def get_random_chores(chore_list: list, number_of_chores: int) -> None:
     :return: None
     """
     selected_chores = f.get_task_list(chore_list, number_of_chores)
-    print(f"Generated chores = ", end="")
-    reset = "\u001B[0m"
-    bold = "\u001B[1m"
-    green = "\u001B[32m"
-    for index, value in enumerate(selected_chores):
-        formatted_value = bold + green + value + reset
-        if index < len(selected_chores) - 1:
-            print(formatted_value, end=", ")
-        else:
-            print(formatted_value)
+    if not c.TEST_MODE:
+        print(f"Generated chores = ", end="")
+        reset = "\u001B[0m"
+        bold = "\u001B[1m"
+        green = "\u001B[32m"
+        for index, value in enumerate(selected_chores):
+            formatted_value = bold + green + value + reset
+            if index < len(selected_chores) - 1:
+                print(formatted_value, end=", ")
+            else:
+                print(formatted_value)
 
 
 if __name__ == '__main__':
@@ -34,14 +36,18 @@ if __name__ == '__main__':
             print(f"{i + 1}: {chore.get_name()} ({chore.get_frequency()})",
                   end="\t")
         print()
-    get_random_chores(chores, c.NUM_CHORES)
     if c.TEST_MODE:
-        for i in range(100):
+        time0 = time.time()
+        iterations = 10000
+        for i in range(iterations):
             get_random_chores(chores, c.NUM_CHORES)
+        time1 = time.time()
+        run_time = time1 - time0
+        print("Time ({} iterations) = {:.4f} secs".format(iterations, run_time))
     else:
         while True:
+            get_random_chores(chores, c.NUM_CHORES)
             entry = input(
                 "Press ENTER to generate a new set of chores... (q: quit): ")
             if entry != "":
                 break
-            get_random_chores(chores, c.NUM_CHORES)
