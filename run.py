@@ -12,7 +12,7 @@ def get_random_chores(chore_list: list, number_of_chores: int, show_output: bool
     """
     selected_chores = f.get_task_list(chore_list, number_of_chores)
     if show_output:
-        print(f"Generated chores = ", end="")
+        print(f"Generated chore{'s' if c.NUM_CHORES > 1 else ''} = ", end="")
         reset = "\u001B[0m"
         bold = "\u001B[1m"
         green = "\u001B[32m"
